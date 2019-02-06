@@ -24,7 +24,7 @@ module Numeric.Rounded.Internal where
 import Control.Exception (bracket, bracket_, throwIO, ArithException(Overflow))
 import Data.Bits (shiftL, testBit)
 import Data.Coerce (coerce)
-import Data.Int (Int32)
+import Data.Int ()
 import Data.Proxy (Proxy(..))
 import Data.Ratio ((%))
 
@@ -114,6 +114,7 @@ toString x = unsafePerformIO $ do
                           dropTrailingZeroes digits
       | e <  threshold -> sign ++ take e digits0 ++ "." ++
                           dropTrailingZeroes (take (n - e) (drop e digits0))
+      | otherwise -> error "Unmatched"                          
       where
         sgn' = sgn x
         sign = case sgn' of
