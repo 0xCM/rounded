@@ -27,7 +27,7 @@ module Numeric.Rounded.Rounding
   ) where
 
 import Data.Data
-import Data.Singletons
+--import Data.Singletons
 
 import Numeric.MPFR.Types
 
@@ -72,15 +72,15 @@ instance Bounded RoundingMode where
   minBound = TowardNearestWithTiesAwayFromZero
   maxBound = Faithfully
 
-newtype instance Sing (m :: RoundingMode) = SRounding RoundingMode
+-- newtype instance Sing (m :: RoundingMode) = SRounding RoundingMode
 
-instance SingI TowardNearestWithTiesAwayFromZero where sing = SRounding TowardNearestWithTiesAwayFromZero
-instance SingI TowardNearest where sing = SRounding TowardNearest
-instance SingI TowardZero    where sing = SRounding TowardZero
-instance SingI TowardInf     where sing = SRounding TowardInf
-instance SingI TowardNegInf  where sing = SRounding TowardNegInf
-instance SingI AwayFromZero  where sing = SRounding AwayFromZero
-instance SingI Faithfully    where sing = SRounding Faithfully
+-- instance SingI TowardNearestWithTiesAwayFromZero where sing = SRounding TowardNearestWithTiesAwayFromZero
+-- instance SingI TowardNearest where sing = SRounding TowardNearest
+-- instance SingI TowardZero    where sing = SRounding TowardZero
+-- instance SingI TowardInf     where sing = SRounding TowardInf
+-- instance SingI TowardNegInf  where sing = SRounding TowardNegInf
+-- instance SingI AwayFromZero  where sing = SRounding AwayFromZero
+-- instance SingI Faithfully    where sing = SRounding Faithfully
 
 reifyRounding :: RoundingMode -> (forall s. Rounding s => Proxy s -> r) -> r
 reifyRounding TowardNearestWithTiesAwayFromZero f = f (Proxy :: Proxy TowardNearestWithTiesAwayFromZero)
